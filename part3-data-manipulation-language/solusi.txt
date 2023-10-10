@@ -3,56 +3,201 @@ RELEASE 1:
 1) Insert
     1.a) Insert 3 product type.
 
+insert into product_type (type_desc) values
+	('Elektronik'),
+	('Pakaian'),
+	('Furniture');
+
+insert into merk (name) values
+	('Samsung'),
+	('Apple'),
+	('Dell'),
+	('Sony'),
+	('Adidas');
+insert into merk (id, name) values (99, 'Tidak Tersedia');
+
     1.b) Insert 2 product dengan product type id = 1
+
+insert into product (name, product_desc, price, type_id, merk_id, stock) values
+	('Smart TV Samsung 55 Inch', 'TV pintar dengan layar LED 55 inci, resolusi 4K, dan dukungan aplikasi streaming.', 8500000, 1, 1, 10),
+	('iPhone 13 Pro', 'Smartphone canggih dengan layar Super Retina XDR, kamera 12MP, dan 256GB penyimpanan.', 16000000, 1, 2, 20),
+	('Laptop Dell XPS 15', 'Laptop kuat dengan layar 15 inci, prosesor Intel Core i7, dan GPU NVIDIA.', 14000000, 1, 3, 20),
+	('Headphone Sony WH-1000XM4', 'Headphone nirkabel dengan noise cancellation dan suara berkualitas tinggi.', 2500000, 1, 4, 25),
+	('Kamera Sony Alpha A7 III', 'Kamera mirrorless dengan sensor full-frame 24MP dan kemampuan video 4K.', 14000000, 1, 4, 8);
 
     1.c) Insert 3 product dengan product type id = 2
 
+insert into product (name, product_desc, price, type_id, merk_id, stock) values
+	('Gaun Pesta Satin', 'Gaun satin mewah dengan potongan A-line, cocok untuk acara formal.', 1500000, 2, 99, 15),
+	('Kemeja Flanel Pria', 'Kemeja flanel dengan motif kotak-kotak, nyaman untuk dipakai sehari-hari.', 300000, 2, 99, 30),
+	('Sepatu Sneakers Adidas', 'Sepatu sneakers dengan desain sporty dan kenyamanan maksimal.', 800000, 2, 5, 25),
+	('Celana Jeans Slim Fit', 'Celana jeans dengan potongan slim fit, nyaman dan trendy.', 350000, 2, 99, 40);
+
     1.d) Insert 3 product dengan product type id = 3
+
+insert into product (name, product_desc, price, type_id, merk_id, stock) values
+	('Sofa Kulit Asli', 'Sofa berbahan kulit asli dengan desain modern dan nyaman.', 5000000, 3, 99, 8),
+	('Lemari Pakaian Kayu', 'Lemari pakaian kayu dengan rak yang luas untuk penyimpanan.', 2200000, 3, 99, 12),
+	('Meja Kerja Kayu', 'Meja kerja kayu dengan laci untuk menyimpan barang-barang.', 1000000, 3, 99, 15);
 
     1.e) Insert product description pada setiap product.
 
+*sudah digabung dengan insert product*
+
     1.f) Insert 3 payment methods.
+
+insert into payment_method (method) values
+	('Transfer'),
+	('COD'),
+	('Paylater');
 
     1.g) Insert 5 user pada tabel user.
 
+insert into customer (name, email, address, birth_date, is_active, gender, created_at, updated_at) values
+	('Omar Bastari', 'omaromar@gmail.com', 'Depok', '2004-01-07', true, 'M', '2023-07-23', current_date),
+	('Fahrur Rizqi', 'faung@gmail.com', 'Purbalingga', '2003-01-25', true, 'M', '2023-08-17', current_date),
+	('Syahla Hanifah', 'lalala@gmail.com', 'Bandung', '2002-11-14', true, 'F', '2023-09-11', current_date),
+	('Siti Salma Nursyabani', 'sitisal@gmail.com', 'Cimahi', '2004-10-11', true, 'F', '2023-09-13', current_date),
+	('Xavier Bravendi', 'safir@gmail.com', 'Cirebon', '2003-01-01', true, 'M', '2023-09-14', current_date),
+	('Lintang Sania', 'sanial@gmail.com', 'Bojonegoro', '2004-04-19', true, 'F', '2023-09-14', current_date),
+	('Raihan Nasrullah', 'asrul@gmail.com', 'Bekasi', '2002-01-07', true, 'M', '2023-09-15', current_date),
+	('Kiki', 'kiki@gmail.com', 'Nagreg', '2002-01-07', true, 'M', '2023-09-16', current_date),
+	('Nurul', 'nurul@gmail.com', 'Bogor', '2002-01-07', true, 'F', '2023-09-12', current_date);
+
     1.h) Insert 3 transaksi di masing-masing user (min 3 user). (soal berlanjut ke soal 1.j)
 
+insert into transaction (customer_id, detail_id, payment_id, transaction_date, paid_amount) values
+	(7, 6, 2, '2023-09-15 05:21:07+07', (select sub_total from transaction_detail where id = 6)),
+	(5, 4, 3, '2023-09-02 18:09:19+07', (select sub_total from transaction_detail where id = 4)),
+	(3, 8, 1, '2023-09-14 06:23:09+07', (select sub_total from transaction_detail where id = 8)),
+	(1, 2, 1, '2023-09-13 19:11:21+07', (select sub_total from transaction_detail where id = 2)),
+	(6, 10, 3, '2023-09-04 07:01:11+07', (select sub_total from transaction_detail where id = 10)),
+	(4, 12, 2, '2023-09-15 20:13:23+07', (select sub_total from transaction_detail where id = 12)),
+	(2, 7, 2, '2023-09-06 08:03:01+07', (select sub_total from transaction_detail where id = 7)),
+	(7, 5, 1, '2023-09-16 21:15:13+07', (select sub_total from transaction_detail where id = 5)),
+	(5, 9, 2, '2023-09-14 09:05:03+07', (select sub_total from transaction_detail where id = 9)),
+	(3, 3, 3, '2023-09-15 22:17:15+07', (select sub_total from transaction_detail where id = 3)),
+	(1, 11, 1, '2023-09-12 10:07:05+07', (select sub_total from transaction_detail where id = 11)),
+	(6, 1, 3, '2023-09-08 23:18:17+07', (select sub_total from transaction_detail where id = 1)),
+	(3, 13, 3, '2023-09-04 11:09:05+07', (select sub_total from transaction_detail where id = 13)),
+	(7, 14, 2, '2023-09-15 05:21:07+07', (select sub_total from transaction_detail where id = 6)),
+	(5, 15, 3, '2023-09-02 18:09:19+07', (select sub_total from transaction_detail where id = 4)),
+	(3, 16, 1, '2023-09-14 06:23:09+07', (select sub_total from transaction_detail where id = 8)),
+	(8, 17, 1, '2023-09-13 19:11:21+07', (select sub_total from transaction_detail where id = 2)),
+	(9, 18, 3, '2023-09-04 07:01:11+07', (select sub_total from transaction_detail where id = 10));
+
     1.i) Insert 3 product di masing-masing transaksi.
+
+insert into transaction_detail (product_id, qty, price, status) values
+	(3, 1, (select price from product where id = 3), 'Terkirim'),
+	(5, 4, (select price from product where id = 5), 'Sedang dikirim'),
+	(7, 1, (select price from product where id = 7), 'Sedang dipacking'),
+	(9, 2, (select price from product where id = 9), 'Terkirim'),
+	(1, 2, (select price from product where id = 1), 'Sedang dikirim'),
+	(2, 3, (select price from product where id = 2), 'Sedang dipacking'),
+	(4, 4, (select price from product where id = 4), 'Terkirim'),
+	(6, 1, (select price from product where id = 6), 'Sedang dikirim'),
+	(8, 1, (select price from product where id = 8), 'Sedang dipacking'),
+	(10, 5, (select price from product where id = 10), 'Terkirim'),
+	(3, 1, (select price from product where id = 3), 'Sedang dikirim'),
+	(8, 3, (select price from product where id = 8), 'Sedang dipacking'),
+	(9, 1, (select price from product where id = 9), 'Terkirim'),
+	(3, 4, (select price from product where id = 3), 'Sedang dikirim'),
+	(3, 7, (select price from product where id = 3), 'Sedang dipacking'),
+	(3, 2, (select price from product where id = 3), 'Terkirim'),
+	(3, 1, (select price from product where id = 3), 'Sedang dikirim'),
+	(3, 3, (select price from product where id = 3), 'Sedang dipacking');
 
 2) Select
     2.a) Tampilkan nama user / pelanggan dengan gender Laki-laki / M.
 
+select name from customer where gender = 'M';
+
     2.b) Tampilkan product dengan id = 3.
+
+select * from product where id = 3;
 
     2.c) Tampilkan data pelanggan yang created_at dalam range 7 hari kebelakang dan mempunyai nama mengandung kata ‘a’.
 
+select * from customer 
+where created_at > current_date - interval '7 days' 
+and name like ('%a%');
+
     2.d) Hitung jumlah user / pelanggan dengan status gender Perempuan.
+
+select count(1) from customer where gender = 'F';
 
     2.e) Tampilkan data pelanggan dengan urutan sesuai nama abjad
 
+select * from customer order by name asc;
+
     2.f) Tampilkan 5 data transaksi dengan product id = 3
+
+select * from transaction_detail 
+where product_id = 3 
+order by id 
+limit 5;
 
 3. Update
     3.a) Ubah data product id 1 dengan nama ‘product dummy’.
 
+update product set name = 'Product Dummy' where id = 1;
+
     3.b) Update qty = 3 pada transaction detail dengan product id 1.
+
+update transaction_detail set qty = 3 where id = 1;
 
 4. Delete
     4.a) Delete data pada tabel product dengan id 1.
 
+delete from product where id = 1;
+
     4.b) Delete pada tabel product dengan product-type id 1.
+
+delete from product where type_id = 1;
 
 
 RELEASE 2: Join, Union, Sub-query, Function
 
 1. Gabungkan data transaksi dari user id 1 dan user id 2.
 
+select *
+from transaction
+where customer_id = 1
+union
+select *
+from transaction
+where customer_id = 2;
+
 2. Tampilkan jumlah harga transaksi user id 1.
+
+select customer_id, count(1) as "transaction total", sum(paid_amount) as "total paid amount" 
+from transaction 
+where customer_id = 1
+group by customer_id;
 
 3. Tampilkan total transaksi dengan product type 2.
 
+select p.type_id as "Product Type", count(1) as "transaction total" 
+from transaction_detail td
+join product p on td.product_id = p.id
+where p.type_id = 2
+group by p.type_id;
+
 4. Tampilkan semua field table product dan field name table product type yang saling berhubungan.
+
+select p.id as "product_id", name, price, type_id, merk_id, stock, type_desc
+from product p
+join product_type pt on p.type_id = pt.id;
 
 5. Tampilkan semua field table transaction, field name table product dan field name table user.
 
+select t.id "transaction_id", customer_id, c.name "customer_name", p.name "product_name", detail_id, payment_id, transaction_date, paid_amount
+from transaction t
+join customer c on t.customer_id = c.id
+join transaction_detail td on t.detail_id = td.id
+join product p on td.product_id = p.id;
+
 6. Tampilkan data products yang tidak pernah ada di tabel transaction_details dengan sub-query.
+
+select * from product where id not in (select product_id from transaction_detail);
